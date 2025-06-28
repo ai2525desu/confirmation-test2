@@ -1,0 +1,23 @@
+.header {
+    border: 1px solid #F4F4F4;
+    height: 50px;
+}
+
+.header_inner {
+    max-width: 1500px;
+    width: 100%;
+}
+
+.header_logo {
+    font-family: "jsMath-cmti10", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 30px;
+    color: #F5C800;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+.main {
+    background-color: #F8F8F8;
+}

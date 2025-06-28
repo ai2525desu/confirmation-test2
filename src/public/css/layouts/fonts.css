@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'jsMath-cmti10 cmti10';
+    font-style: italic;
+    font-weight: normal;
+    src: local('jsMath-cmti10 cmti10'), url('jsMath-cmti10.woff') format('woff');
+}
