@@ -1,0 +1,131 @@
+.product-list__content {
+    margin: 70px auto;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+    padding: 0 40px;
+}
+
+.product-list__header {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.product-list__heading {
+    font-weight: 600;
+    font-size: 32px;
+    color: #333333;
+}
+
+.product-list__move--register-screen {
+    text-decoration: none;
+    display: inline-block;
+    height: 50px;
+    padding: 13px 20px;
+    background-color: #FFA929;
+    border: none;
+    border-radius: 3px;
+    color: #4B4B4B;
+}
+
+.product-list__item {
+    grid-column: 1/2;
+    grid-row: 2/4;
+}
+
+.search-form__item {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.search-form__item input {
+    border: 1px solid #E0DFDE;
+    outline: none;
+    border-radius: 25px;
+    padding: 14px 10px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #E0DFDE;
+    width: 100%;
+}
+
+.search-form__button--submit {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #F5C800;
+    box-shadow: 0 4px 10px #0000001A;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4B4B4B;
+}
+
+.search-form__item--sort {
+    margin-top: 20px;
+    border-bottom: 1px solid #E0DFDE;
+}
+
+.search-form__item--sort-heading {
+    font-weight: 600;
+    font-size: 20px;
+    color: #333333;
+}
+
+.search-form__item--select-conditions {
+    width: 100%;
+    border: 1px solid #E0DFDE;
+    border-radius: 5px;
+    padding: 11px 10px;
+}
+
+/* 6/30:いったんgridでひょうじできたのでやめる*/
+.product-list__lists {
+    gap: 20px;
+    grid-column: 2/4;
+    grid-row: 2/4;
+    display: grid;
+    grid-template-rows: 90% 10%;
+}
+
+.product-list__lists--card-wrap {
+    grid-row: 1/2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.product-list__lists--pagonation {
+    grid-row: 2/3;
+}
+
+.product-card {
+    width: 30%;
+    box-shadow: 0 0 10px #0000001A;
+}
+
+.product-card__image {
+    height: 80%;
+}
+
+.product-card__image img {
+    width: 100%;
+    height: 100%;
+}
+
+.product-card__tag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20%;
+}
+
+.product-card__tag--item {
+    display: inline-block;
+}

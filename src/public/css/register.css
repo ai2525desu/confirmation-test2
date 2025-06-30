@@ -1,0 +1,131 @@
+.register-content {
+    max-width: 1230px;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.register-content__heading {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.register-content__form {
+    width: 100%;
+}
+
+.register-form__group {
+    margin-bottom: 30px;
+    color: #4B4B4B;
+}
+
+.register-form__group-title {
+    display: flex;
+    align-items: center;
+}
+
+.register-form__label--item {
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.register-form__label--required {
+    font-size: 12px;
+    font-weight: 300;
+    color: #FFFFFF;
+    background-color: #FD0707;
+    padding: 0 5px;
+}
+
+.register-form__label--notice {
+    font-size: 12px;
+    font-weight: 300;
+    color: #FD0707;
+    margin-left: 10px;
+}
+
+.register-form__error {
+    font-size: 14px;
+    font-weight: 300;
+    color: #FD0707;
+}
+
+.register-form__input input,
+.register-form__input--textarea textarea {
+    width: 100%;
+    background: #FFFFFF;
+    outline: none;
+    border: 1px solid #E0DFDE;
+    font-size: 14px;
+    font-weight: 300;
+    color: #E0DFDE;
+    padding: 11px 10px;
+    margin-top: 10px;
+}
+
+.register-form__input--image {
+    margin-top: 10px;
+}
+
+.image-button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #E0DFDE;
+    border: 1px solid #4B4B4B;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 14px;
+    color: #4B4B4B;
+}
+
+.image-input {
+    display: none;
+}
+
+.register-form__input--textarea textarea {
+    height: 160px;
+    resize: none;
+}
+
+.register-form__input--checkbox {
+    padding: 4px 0;
+
+}
+
+.custom-radio {
+    font-weight: 300;
+    font-size: 16px;
+    color: #4B4B4B;
+    margin-right: 50px;
+}
+
+.register-form__button-wrap {
+    text-align: center;
+}
+
+.register-form__button {
+    width: 30%;
+    height: 50px;
+    padding: 13px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4B4B4B;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px #0000001A;
+}
+
+.back {
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #E0DFDE;
+    cursor: pointer;
+}
+
+.register {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    background-color: #F5C800;
+}

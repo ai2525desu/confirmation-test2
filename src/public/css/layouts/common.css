@@ -1,6 +1,11 @@
+body {
+    background-color: #F8F8F8;
+}
+
 .header {
     border: 1px solid #F4F4F4;
     height: 50px;
+    background-color: #FFFFFF;
 }
 
 .header_inner {
@@ -16,8 +21,4 @@
     color: #F5C800;
     text-decoration: none;
     padding: 10px 20px;
-}
-
-.main {
-    background-color: #F8F8F8;
 }
