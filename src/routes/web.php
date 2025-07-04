@@ -16,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('products')->group(function () {
     Route::get('/', [ProductController::class, 'list']);
-    Route::get('/register', [ProductController::class, 'store']);
+    Route::get('/detail/{productId}', [ProductController::class, 'detail'])->name('detail');
+    Route::post('/register', [ProductController::class, 'store']);
+    Route::patch('/{productId}/update', [ProductController::class, 'update']);
+    Route::delete('/{productId}/delete', [ProductController::class, 'delete']);
+    Route::get('/search', [ProductController::class, 'search']);
 });

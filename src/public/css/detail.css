@@ -1,0 +1,158 @@
+.detail-content {
+    max-width: 1230px;
+    margin: 70px auto;
+    width: 60%;
+}
+
+.detail-form {
+    width: 100%;
+}
+
+.detail-form__header {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.detail-form__heading {
+    color: #0085FF;
+}
+
+.detail-form__heading--item {
+    color: #4B4B4B;
+}
+
+.detail-form__content-error,
+.content-group__error {
+    color: #FD0707;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.detail-form__content-wrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.detail-form__content {
+    width: 100%;
+}
+
+.detail-form__content-description {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.image-button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #E0DFDE;
+    border: 1px solid #4B4B4B;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 14px;
+    color: #4B4B4B;
+}
+
+.image-input {
+    display: none;
+}
+
+
+.content-group__title {
+    font-size: 16px;
+    font-weight: 300;
+    color: #4B4B4B;
+}
+
+.content-group__item {
+    margin-top: 10px;
+}
+
+.content-group__item--input input,
+.content-group__item--textarea textarea {
+    width: 100%;
+    border: 1px solid #E0DFDE;
+    border-radius: 5px;
+    padding: 11px 10px;
+    outline: none;
+    color: #4B4B4B;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+
+.content-group__item--textarea textarea {
+    height: 160px;
+    resize: none;
+}
+
+.content-group__item--checkbox {
+    padding: 4px 0;
+}
+
+.custom-radio {
+    font-weight: 300;
+    font-size: 16px;
+    color: #4B4B4B;
+    margin-right: 50px;
+}
+
+.detail-form__button-wrap {
+    display: grid;
+    grid-template-columns: 90% 10%;
+    align-items: center;
+}
+
+.button-update {
+    grid-column: 1/2;
+    text-align: center;
+}
+
+
+.detail-form__button {
+    width: 30%;
+    height: 50px;
+    padding: 13px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4B4B4B;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px #0000001A;
+}
+
+.back {
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #E0DFDE;
+    cursor: pointer;
+}
+
+.update {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    background-color: #F5C800;
+}
+
+.button-delete {
+    grid-column: 2/3;
+    text-align: right;
+}
+
+.delete-form__button {
+    padding: 9px;
+    height: 50px;
+}
+
+
+.delete-form__button--submit {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+}
