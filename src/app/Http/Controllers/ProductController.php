@@ -19,10 +19,10 @@ class ProductController extends Controller
     // 検索機能
     public function search(Request $request)
     {
-        // 検索のローカルスコープ使用
-
-        // 並び替え機能
         $query = Product::query();
+
+        $query->NameSearch($request->name);
+
         if ($request->sort === 'expensive') {
             $query->orderBy('price', 'desc');
         } elseif ($request->sort === 'cheap') {

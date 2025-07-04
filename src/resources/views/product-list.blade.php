@@ -9,7 +9,11 @@
 <div class="product-list__content">
     <div class="product-list__header">
         <h2 class="product-list__heading">
+            @if (request('name'))
+            “{{ request('name') }}”の商品一覧
+            @else
             商品一覧
+            @endif
         </h2>
         <a class="product-list__move--register-screen" href="/products/register">
             + 商品を追加
@@ -20,7 +24,7 @@
             <form class="search-form" action="/products/search" method="get" enctype="multipart/form-data" novalidate>
                 @csrf
                 <div class="search-form__item">
-                    <input class="search-form__item-input--keyword" type="text" name="keyword" placeholder="商品名で検索" value="{{ request('keyword') }}">
+                    <input class="search-form__item-input--name" type="text" name="name" placeholder="商品名で検索" value="{{ request('name') }}">
                 </div>
                 <div class="search-form__button">
                     <button class="search-form__button--submit" type="submit">
@@ -68,7 +72,7 @@
                 <div class="product-card__tag">
                     <p class="product-card__tag--name">{{ $product->name }}
                     </p>
-                    <p class="product-card__tag--price">{{ $product->price }}
+                    <p class="product-card__tag--price">¥{{ $product->price }}
                     </p>
                 </div>
             </a>
