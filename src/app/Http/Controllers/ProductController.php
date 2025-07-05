@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\Season;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -55,7 +56,7 @@ class ProductController extends Controller
             'image' => $imagePath,
             'description' => $request->input('description'),
         ]);
- 
+
         if ($request->has('seasons')) {
             $product->seasons()->attach($request->input('seasons'));
         }
@@ -63,23 +64,25 @@ class ProductController extends Controller
     }
 
     // 詳細画面
-    public function detail($id)
+    public function detail($productId)
     {
-        $product = Product::with('seasons')->findOrFail($id);
+        $product = Product::with('seasons')->findOrFail($productId);
         $seasons = Season::all();
         return view('detail', compact('product', 'seasons'));
     }
 
     // 更新機能
-    // 気分転換に違うところ！7/4 0116
-    public function update(ProductRequest $request)
+    public function update(ProductRequest $request, $productId)
     {
-        $product = Product::findOrFile($request->id);
+        $product = Product::findOrFail($productId);
 
+        $oldImage = $product->image;
 
-        // 画像処理
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('', 'public');
+            $path = $request->file('image')->store('products', 'public');
+            if ($oldImage && Storage::disk('public')->exists($oldImage)) {
+                Storage::disk('public')->delete($oldImage);
+            }
         } else {
             $path = $request->input('existing_image');
         }
@@ -93,9 +96,20 @@ class ProductController extends Controller
 
         $product->seasons()->sync($request->input('seasons', []));
 
-        return redirect('/products');
+        return redirect('/products')->with('');
     }
 
     // 削除機能
-    public function delete($id) {}
+    public function delete($productId)
+    {
+        $product = Product::findOrFail($productId);
+
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+
+        $product->delete();
+
+        return redirect('/products');
+    }
 }

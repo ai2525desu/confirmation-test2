@@ -23,15 +23,28 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required',
             'price' => 'required|integer|between:0,10000',
             'image' => 'required|mimes:png,jpeg',
             'seasons' => 'required|array',
             'description' => 'required|max:120',
         ];
-    }
 
+        if ($this->isMethod('post')) {
+            $rules['image'] = 'required|mimes:png,jpeg';
+        }
+
+        if ($this->isMethod('patch')) {
+            if (!$this->hasFile('image') && !$this->input('existing_image')) {
+                $rules['image'] = 'required|mimes:png,jpeg';
+            } else {
+                $rules['image'] = 'sometimes|file|mimes:png,jpeg';
+            }
+        }
+
+        return $rules;
+    }
 
     public function messages()
     {

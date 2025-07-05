@@ -21,7 +21,7 @@
             <div class="detail-form__content">
                 <div class="detail-form__content--item">
                     @if ($product->image)
-                    <img id="preview-image" src="{{  asset('storage/products/' . $product->image) }}" alt="プレビュー画像">
+                    <img id="preview-image" src="{{  asset('storage/' . $product->image) }}" alt="プレビュー画像">
                     <input type="hidden" name="existing_image" value="{{ $product->image }}">
                     @endif
                     <input id="image" type="file" name="image" class="image-input" accept="image/*">
@@ -141,19 +141,21 @@
                 </div>
             </div>
         </div>
-</div>
-</form>
-<div class="button-delete">
-    <form class="delete-form" action="/products/{{ $product->id }}/delete" method="post" novalidate>
-        @method('DELETE')
-        @csrf
-        <div class="delete-form__button">
-            <input type="hidden" name="id" value="{{ $product->id }}">
-            <button class="delete-form__button--submit">
-                <img src="{{ asset('/storage/Vector.png') }}" alt="ゴミ箱">
-            </button>
-        </div>
     </form>
+    </form>
+    <!-- 削除機能：未実施 -->
+    <div class="button-delete">
+        <form class="delete-form" action="/products/{{ $product->id }}/delete" method="post" novalidate>
+            @method('DELETE')
+            @csrf
+            <div class="delete-form__button">
+                <input type="hidden" name="id" value="{{ $product->id }}">
+                <button class="delete-form__button--submit">
+                    <img src="{{ asset('/storage/Vector.png') }}" alt="ゴミ箱">
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 
 
