@@ -32,23 +32,70 @@ class ProductController extends Controller
         return view('product-list', compact('products'));
     }
 
-    // 登録画面
+    // 登録画面表示
+    public function register()
+    {
+        $seasons = Season::all();
+        return view('register', compact('seasons'));
+    }
+
+    // 登録機能
     public function store(ProductRequest $request)
     {
-        return view('register');
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+        } else {
+            $imagePath = null;
+        }
+
+        $product = Product::create([
+            'name' => $request->input('name'),
+            'price' => $request->input('price'),
+            'image' => $imagePath,
+            'description' => $request->input('description'),
+        ]);
+ 
+        if ($request->has('seasons')) {
+            $product->seasons()->attach($request->input('seasons'));
+        }
+        return redirect('/products');
     }
 
     // 詳細画面
     public function detail($id)
     {
-        $product = Product::where('id', $id)->first();
+        $product = Product::with('seasons')->findOrFail($id);
         $seasons = Season::all();
         return view('detail', compact('product', 'seasons'));
     }
 
-    // 更新機能：update
-    public function update(ProductRequest $request) {}
+    // 更新機能
+    // 気分転換に違うところ！7/4 0116
+    public function update(ProductRequest $request)
+    {
+        $product = Product::findOrFile($request->id);
 
-    // 削除機能:delete
-    public function delete(Request $request) {}
+
+        // 画像処理
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('', 'public');
+        } else {
+            $path = $request->input('existing_image');
+        }
+
+        $product->update([
+            'name'        => $request->name,
+            'price'       => $request->price,
+            'description' => $request->description,
+            'image'       => $path,
+        ]);
+
+        $product->seasons()->sync($request->input('seasons', []));
+
+        return redirect('/products');
+    }
+
+    // 削除機能
+    public function delete($id) {}
 }

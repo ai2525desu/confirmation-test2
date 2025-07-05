@@ -24,9 +24,13 @@
                 </div>
             </div>
             <div class="register-form__error">
-                @error('name')
-                {{ $message }}
-                @enderror
+                @if ($errors->has('name'))
+                <ul class="content-error__text">
+                    @foreach ($errors->get('name') as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                @endif
             </div>
         </div>
         <div class="register-form__group">
@@ -42,12 +46,16 @@
                 </div>
             </div>
             <div class="register-form__error">
-                @error('price')
-                {{ $message }}
-                @enderror
+                @if ($errors->has('price'))
+                <ul class="content-error__text">
+                    @foreach ($errors->get('price') as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                @endif
             </div>
         </div>
-        <div class="register-form__group">
+        <div class="register-form__group--image">
             <div class="register-form__group-title">
                 <div class="register-form__label--item">
                     <label for="image">商品画像</label>
@@ -56,15 +64,24 @@
             </div>
             <div class="register-form__group-content">
                 <div class="register-form__input--image">
-                    <label for="image" class="image-button">ファイルを選択</label>
-                    <input id="image" type="file" name="image" class="image-input">
-                    {{-- <img src="{{ asset('/storage' . $product->image_path) }}"> --}}
+                    <div class="image-wrap">
+                        <img id="preview-image" src="#" alt="プレビュー画像" class="preview-image">
+                        <input id="image" type="file" name="image" class="image-input" accept="image/*">
+                    </div>
+                    <div class="image-item">
+                        <label for="image" class="image-button">ファイルを選択</label>
+                        <span id="selected-filename" class="filename-display"></span>
+                    </div>
                 </div>
             </div>
             <div class="register-form__error">
-                @error('image')
-                {{ $message }}
-                @enderror
+                @if ($errors->has('image'))
+                <ul class="content-error__text">
+                    @foreach ($errors->get('image') as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                @endif
             </div>
         </div>
         <div class="register-form__group">
@@ -75,40 +92,22 @@
             </div>
             <div class="register-form__group-content">
                 <div class="register-form__input--checkbox">
-                    <!-- チェックボックスの例：こちらが良さそう -->
-                    {{--@foreach ($seasons as $season)
+                    @foreach ($seasons as $season)
                     <label class="custom-radio">
-                        <input type="checkbox" name="season[]" value="{{ $season->id }}">
-                    <span class="checkmark"></span>
-                    {{ $season->name }}
-                    </label>
-                    @endforeach--}}
-                    <!-- 現在のコード -->
-                    <label class="custom-radio">
-                        <input type="checkbox" name="season[]">
+                        <input type="checkbox" name="seasons[]" value="{{ $season->id }}" {{ in_array($season->id, old('seasons', [])) ? 'checked' : '' }}>
                         <span class="checkmark"></span>
-                        春
+                        {{ $season->name }}
                     </label>
-                    <label class="custom-radio">
-                        <input type="checkbox" name="season[]">
-                        <span class="checkmark"></span>
-                        夏
-                    </label>
-                    <label class="custom-radio">
-                        <input type="checkbox" name="season[]">
-                        <span class="checkmark"></span>
-                        秋
-                    </label>
-                    <label class="custom-radio">
-                        <input type="checkbox" name="season[]">
-                        <span class="checkmark"></span>
-                        冬
-                    </label>
+                    @endforeach
                 </div>
                 <div class="register-form__error">
-                    @error('season')
-                    {{ $message }}
-                    @enderror
+                    @if ($errors->has('seasons'))
+                    <ul class="content-error__text">
+                        @foreach ($errors->get('seasons') as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
                 </div>
             </div>
         </div>
@@ -125,9 +124,13 @@
                 </div>
             </div>
             <div class="register-form__error">
-                @error('description')
-                {{ $message }}
-                @enderror
+                @if ($errors->has('description'))
+                <ul class="content-error__text">
+                    @foreach ($errors->get('description') as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                @endif
             </div>
         </div>
         <div class="register-form__button-wrap">
@@ -138,8 +141,23 @@
                 登録
             </button>
         </div>
-</div>
-</form>
+    </form>
 </div>
 
+<script>
+    document.getElementById('image').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.getElementById('preview-image');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+
+        document.getElementById('selected-filename').textContent = file.name;
+    });
+</script>
 @endsection

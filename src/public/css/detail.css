@@ -21,12 +21,31 @@
     color: #4B4B4B;
 }
 
+.detail-form__content--item img {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.filename-display {
+    color: #888888;
+    font-size: 14px;
+    font-weight: 300;
+    margin-left: 10px;
+}
+
 .detail-form__content-error,
 .content-group__error {
     color: #FD0707;
     font-size: 14px;
     font-weight: 300;
 }
+
+
+.content-error__text {
+    list-style: none;
+}
+
 
 .detail-form__content-wrap {
     display: flex;
@@ -38,6 +57,10 @@
 
 .detail-form__content {
     width: 100%;
+}
+
+.detail-form__content-group {
+    margin-bottom: 30px;
 }
 
 .detail-form__content-description {
@@ -87,6 +110,7 @@
 .content-group__item--textarea textarea {
     height: 160px;
     resize: none;
+    color: #4B4B4B;
 }
 
 .content-group__item--checkbox {

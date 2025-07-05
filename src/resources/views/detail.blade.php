@@ -13,22 +13,28 @@
             <span class="detail-form__heading">
                 商品一覧
             </span>
-            <span clas="detail-form__heading--item">
-                {{-- >&nbsp;{{ $product->name }} --}}
-                >&nbsp;キウイ
+            <span class="detail-form__heading--item">
+                >&nbsp;{{ $product->name }}
             </span>
         </div>
         <div class="detail-form__content-wrap">
             <div class="detail-form__content">
                 <div class="detail-form__content--item">
+                    @if ($product->image)
+                    <img id="preview-image" src="{{  asset('storage/products/' . $product->image) }}" alt="プレビュー画像">
+                    <input type="hidden" name="existing_image" value="{{ $product->image }}">
+                    @endif
+                    <input id="image" type="file" name="image" class="image-input" accept="image/*">
                     <label for="image" class="image-button">ファイルを選択</label>
-                    <input id="image" type="file" name="image" class="image-input">
-                    {{-- <img src="{{ asset('/storage' . $product->image_path) }}"> --}}
+                    <span id="selected-filename" class="filename-display"></span>
                     <div class="detail-form__content-error">
-                        @error('image')
-                        {{ $message }}
-                        @enderror
-                        エラーメッセージ
+                        @if ($errors->has('image'))
+                        <ul class="content-error__text">
+                            @foreach ($errors->get('image') as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -45,9 +51,13 @@
                         </div>
                     </div>
                     <div class="content-group__error">
-                        @error('name')
-                        {{ $message }}
-                        @enderror
+                        @if ($errors->has('name'))
+                        <ul class="content-error__text">
+                            @foreach ($errors->get('name') as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
                     </div>
                 </div>
                 <div class="detail-form__content-group">
@@ -62,9 +72,13 @@
                         </div>
                     </div>
                     <div class="content-group__error">
-                        @error('price')
-                        {{ $message }}
-                        @enderror
+                        @if ($errors->has('price'))
+                        <ul class="content-error__text">
+                            @foreach ($errors->get('price') as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
                     </div>
                 </div>
                 <div class="detail-form__content-group">
@@ -73,43 +87,25 @@
                             <label for="price">季節</label>
                         </div>
                     </div>
-                    <!-- チェックボックスの値の保持ができていない -->
                     <div class="content-group__item">
                         <div class="content-group__item--checkbox">
                             @foreach ($seasons as $season)
                             <label class="custom-radio">
-                                <input type="checkbox" name="season[]" value="{{ $season->id }}">
+                                <input type="checkbox" name="seasons[]" value="{{ $season->id }}" {{ in_array($season->id, old('seasons', $product->seasons->pluck('id')->toArray())) ? 'checked' : '' }}>
                                 <span class="checkmark"></span>
                                 {{ $season->name }}
                             </label>
                             @endforeach
-                            <!-- 現在のコード
-                            <label class="custom-radio">
-                                <input type="checkbox" name="season[]">
-                                <span class="checkmark"></span>
-                                春
-                            </label>
-                            <label class="custom-radio">
-                                <input type="checkbox" name="season[]">
-                                <span class="checkmark"></span>
-                                夏
-                            </label>
-                            <label class="custom-radio">
-                                <input type="checkbox" name="season[]">
-                                <span class="checkmark"></span>
-                                秋
-                            </label>
-                            <label class="custom-radio">
-                                <input type="checkbox" name="season[]">
-                                <span class="checkmark"></span>
-                                冬
-                            </label> -->
                         </div>
                     </div>
                     <div class="content-group__error">
-                        @error('$season')
-                        {{ $message }}
-                        @enderror
+                        @if ($errors->has('seasons'))
+                        <ul class="content-error__text">
+                            @foreach ($errors->get('seasons') as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -125,36 +121,55 @@
                     </div>
                 </div>
                 <div class="content-group__error">
-                    @error('description')
-                    {{ $message }}
-                    @enderror
+                    @if ($errors->has('description'))
+                    <ul class="content-error__text">
+                        @foreach ($errors->get('description') as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </div>
+            </div>
+            <div class="detail-form__button-wrap">
+                <div class="button-update">
+                    <a class="detail-form__button back" href="/products">
+                        戻る
+                    </a>
+                    <button class="detail-form__button update" type="submit">
+                        変更を保存
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="detail-form__button-wrap">
-            <div class="button-update">
-                <a class="detail-form__button back" href="/products">
-                    戻る
-                </a>
-                <button class="detail-form__button update" type="submit">
-                    変更を保存
-                </button>
-            </div>
-            <div class="button-delete">
-                <form class="delete-form" action="/products/{{ $product->id }}/delete" method="post" enctype="multipart/form-data" novalidate>
-                    @method('DELETE')
-                    @csrf
-                    <div class="delete-form__button">
-                        <input type="hidden" name="id" value="{{ $product->id }}">
-                        <button class="delete-form__button--submit">
-                            <img src="{{ asset('/storage/Vector.png') }}" alt="ゴミ箱">
-                        </button>
-                    </div>
-                </form>
-            </div>
+</div>
+</form>
+<div class="button-delete">
+    <form class="delete-form" action="/products/{{ $product->id }}/delete" method="post" novalidate>
+        @method('DELETE')
+        @csrf
+        <div class="delete-form__button">
+            <input type="hidden" name="id" value="{{ $product->id }}">
+            <button class="delete-form__button--submit">
+                <img src="{{ asset('/storage/Vector.png') }}" alt="ゴミ箱">
+            </button>
         </div>
     </form>
 </div>
 
+
+<script>
+    document.getElementById('image').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('preview-image').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+
+        document.getElementById('selected-filename').textContent = file.name;
+    });
+</script>
 
 @endsection
