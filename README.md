@@ -44,7 +44,7 @@
 * ProductsTableSeeder.php
 * SeasonsTableSeeder.php
 
-## 使用環境
+## 使用環境（実行環境）
 - Windows 11 Home
 - Ubuntu 24.04.1 LTS
 - VSCode 1.101.2
