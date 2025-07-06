@@ -65,7 +65,7 @@
     <div class="product-list__lists">
         <div class="product-list__lists--card-wrap">
             @foreach ($products as $product)
-            <a href="{{ route('detail', $product->id) }}" class="product-card">
+            <a href="{{ route('detail', ['productId' => $product->id]) }}" class="product-card">
                 <div class="product-card__image">
                     <img src="{{  asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
                 </div>
