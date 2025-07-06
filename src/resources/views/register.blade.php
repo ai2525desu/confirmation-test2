@@ -93,7 +93,7 @@
             <div class="register-form__group-content">
                 <div class="register-form__input--checkbox">
                     @foreach ($seasons as $season)
-                    <label class="custom-radio">
+                    <label class="custom-checkbox">
                         <input type="checkbox" name="seasons[]" value="{{ $season->id }}" {{ in_array($season->id, old('seasons', [])) ? 'checked' : '' }}>
                         <span class="checkmark"></span>
                         {{ $season->name }}
