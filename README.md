@@ -54,7 +54,7 @@
 - nginx:1.21.1
 - mysql:8.0.26
 
-## 権限エラー対策(Windows)
+## 権限エラー対策（Windows）
 * ホストとコンテナ間のファイル権限不一致によるエラーを防ぐため、docker/php/Dockerfileにて独自ユーザー('ai2525desu')を作成し、root権限以外でLaravelを実行している
     - Dockerfile一部抜粋<br>
     ```RUN useradd -m ai2525desu```
