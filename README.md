@@ -27,13 +27,13 @@ DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ```
 5. アプリケーションキーの作成
- ```php artisan key:generate```
+<br>```php artisan key:generate```
 6. src/storage/app/publicディレクトリ下に保存してある画像を使用のために、シンボリックリンク作成
- ```php artisan storage:link```
+<br>```php artisan storage:link```
 7. テーブルデータ反映のため、マイグレーションの実行
- ```php artisan migrate```
+<br>```php artisan migrate```
 8. ダミーデータの反映のため、シーディング実行
- ```php artisan db:seed```
+<br>```php artisan db:seed```
 
 **マイグレーションファイル**
 * 2025_07_02_005739_create_products_table.php
