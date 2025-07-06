@@ -14,7 +14,7 @@
 <body>
     <header class="header">
         <div class="header_inner">
-            <a class="header_logo" href="/">
+            <a class="header_logo" href="/products">
                 mogitate
             </a>
         </div>
