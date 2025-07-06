@@ -26,13 +26,13 @@
     DB_USERNAME=laravel_user
     DB_PASSWORD=laravel_pass
     ```
-5. アプリケーションキーの作成
+5. アプリケーションキーの作成<br>
     ```php artisan key:generate```
-6. src/storage/app/publicディレクトリ下に保存してある画像を使用のために、シンボリックリンク作成
+6. src/storage/app/publicディレクトリ下に保存してある画像を使用のために、シンボリックリンク作成<br>
     ```php artisan storage:link```
-7. テーブルデータ反映のため、マイグレーションの実行
+7. テーブルデータ反映のため、マイグレーションの実行<br>
     ```php artisan migrate```
-8. ダミーデータの反映のため、シーディング実行
+8. ダミーデータの反映のため、シーディング実行<br>
     ```php artisan db:seed```
 
 **マイグレーションファイル**
