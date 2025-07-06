@@ -58,11 +58,13 @@
     'RUN useradd -m ai2525desu'
 * docker-compose.ymlにてphpの箇所に下記記載を付け加えることでユーザーIDを指定している
 - 一部抜粋
-    ```php:
+    ```
+    php:
         build: ./docker/php
         user: "1000:1000"
         volumes:
-        - ./src:/var/www/```
+        - ./src:/var/www/
+    ```
 
 
 ## ER図
