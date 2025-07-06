@@ -56,17 +56,17 @@
 
 ## 権限エラー対策(Windows)
 * ホストとコンテナ間のファイル権限不一致によるエラーを防ぐため、docker/php/Dockerfileにて独自ユーザー('ai2525desu')を作成し、root権限以外でLaravelを実行している
-- Dockerfile一部抜粋
+    - Dockerfile一部抜粋<br>
     ```RUN useradd -m ai2525desu```
 * docker-compose.ymlにてphpの箇所に下記記載を付け加えることでユーザーIDを指定している
-- 一部抜粋
-    ```
-    php:
-        build: ./docker/php
-        user: "1000:1000"
-        volumes:
-        - ./src:/var/www/
-    ```
+    - 一部抜粋
+        ```
+        php:
+            build: ./docker/php
+            user: "1000:1000"
+            volumes:
+            - ./src:/var/www/
+        ```
 
 
 ## ER図
