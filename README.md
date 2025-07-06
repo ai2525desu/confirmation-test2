@@ -18,22 +18,22 @@
 2. composer install
 3. 「.env example」ファイルを「.env」ファイルに命名変更。または、新しく「.env」ファイルを作成する。
 4. 「.env」ファイルの該当箇所に下記の環境変数を追加
-```
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel_db
-DB_USERNAME=laravel_user
-DB_PASSWORD=laravel_pass
-```
+    ```
+    DB_CONNECTION=mysql
+    DB_HOST=mysql
+    DB_PORT=3306
+    DB_DATABASE=laravel_db
+    DB_USERNAME=laravel_user
+    DB_PASSWORD=laravel_pass
+    ```
 5. アプリケーションキーの作成
-<br>```php artisan key:generate```
+    ```php artisan key:generate```
 6. src/storage/app/publicディレクトリ下に保存してある画像を使用のために、シンボリックリンク作成
-<br>```php artisan storage:link```
+    ```php artisan storage:link```
 7. テーブルデータ反映のため、マイグレーションの実行
-<br>```php artisan migrate```
+    ```php artisan migrate```
 8. ダミーデータの反映のため、シーディング実行
-<br>```php artisan db:seed```
+    ```php artisan db:seed```
 
 **マイグレーションファイル**
 * 2025_07_02_005739_create_products_table.php
